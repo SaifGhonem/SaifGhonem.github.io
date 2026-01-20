@@ -5,7 +5,7 @@ const DATA = {
     name: "Cottonil Retail Analysis",
     images: [
       { label: "Main", src: "assets/cottonil-main.png" },
-      { label: "Sales & Discount", src: "assets/cottonil-sales%20%26%20discount.png" },
+      { label: "Sales & Discount", src: "assets/cottonil-sales & discount.png" },
       { label: "Returns", src: "assets/cottonil-returns.png" },
       { label: "Suppliers", src: "assets/cottonil-suppliers.png" },
       { label: "Inventory", src: "assets/cottonil-inventory.png" }
@@ -14,10 +14,10 @@ const DATA = {
   fleet: {
     name: "Fleet Management Analysis",
     images: [
-      { label: "Executive", src: "assets/fleet-Executive%20Dashboard.png" },
-      { label: "Fuel", src: "assets/fleet-Fuel%20Analysis.png" },
+      { label: "Executive", src: "assets/fleet-Executive-Dashboard.png" },
+      { label: "Fuel", src: "assets/fleet-Fuel-Analysis.png" },
       { label: "Repair", src: "assets/fleet-repair.png" },
-      { label: "Vehicle Details", src: "assets/fleet-vehicle%20details.png" }
+      { label: "Vehicle Details", src: "assets/fleet-vehicle-details.png" }
     ]
   }
 };
