@@ -22,15 +22,15 @@ const DATA = {
   }
 };
 
-const key = getParam("p") || "cottonil";
+const key = (getParam("p") || "cottonil").toLowerCase();
 const project = DATA[key];
 
 const yearEl = document.getElementById("year");
 if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
 const pageTitle = document.getElementById("pageTitle");
-const projectName = document.getElementById("projectName");
 const pageSub = document.getElementById("pageSub");
+const projectName = document.getElementById("projectName");
 const msg = document.getElementById("msg");
 
 const mainImg = document.getElementById("mainImg");
@@ -41,20 +41,32 @@ const openFull = document.getElementById("openFull");
 
 let idx = 0;
 
+function safeText(el, text) {
+  if (el) el.textContent = text;
+}
+
 function setImage(i) {
+  if (!project) return;
+
   idx = (i + project.images.length) % project.images.length;
   const item = project.images[idx];
 
-  mainImg.src = item.src;
-  mainImg.alt = item.label;
-  openFull.href = item.src;
+  if (mainImg) {
+    mainImg.src = item.src;
+    mainImg.alt = item.label;
+  }
+  if (openFull) openFull.href = item.src;
 
-  Array.from(thumbs.children).forEach((b, j) => {
-    b.classList.toggle("is-active", j === idx);
-  });
+  if (thumbs) {
+    Array.from(thumbs.children).forEach((b, j) => {
+      b.classList.toggle("is-active", j === idx);
+    });
+  }
 }
 
 function renderThumbs() {
+  if (!project || !thumbs) return;
+
   thumbs.innerHTML = "";
   project.images.forEach((img, i) => {
     const b = document.createElement("button");
@@ -68,20 +80,20 @@ function renderThumbs() {
 
 function init() {
   if (!project) {
-    pageTitle.textContent = "Screenshots";
-    projectName.textContent = "Not found";
-    pageSub.textContent = "";
-    msg.textContent = "This project has no screenshots added yet.";
-    prevBtn.style.display = "none";
-    nextBtn.style.display = "none";
-    openFull.style.display = "none";
+    safeText(pageTitle, "Screenshots");
+    safeText(projectName, "Project not found");
+    safeText(pageSub, "");
+    safeText(msg, "No screenshots added for this project yet.");
+    if (prevBtn) prevBtn.style.display = "none";
+    if (nextBtn) nextBtn.style.display = "none";
+    if (openFull) openFull.style.display = "none";
     return;
   }
 
-  pageTitle.textContent = `${project.name} Screenshots`;
-  projectName.textContent = project.name;
-  pageSub.textContent = "Use Prev Next or click a label";
-  msg.textContent = "";
+  safeText(pageTitle, `${project.name} Screenshots`);
+  safeText(projectName, project.name);
+  safeText(pageSub, "Use Prev Next or click a label");
+  safeText(msg, "");
 
   renderThumbs();
   setImage(0);
@@ -89,5 +101,11 @@ function init() {
 
 init();
 
-prevBtn?.addEventListener("click", () => setImage(idx - 1));
-nextBtn?.addEventListener("click", () => setImage(idx + 1));
+if (prevBtn) prevBtn.addEventListener("click", () => setImage(idx - 1));
+if (nextBtn) nextBtn.addEventListener("click", () => setImage(idx + 1));
+
+window.addEventListener("keydown", (e) => {
+  if (!project) return;
+  if (e.key === "ArrowLeft") setImage(idx - 1);
+  if (e.key === "ArrowRight") setImage(idx + 1);
+});
