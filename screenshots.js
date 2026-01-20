@@ -11,7 +11,7 @@ const DATA = {
       { label: "Inventory", src: "assets/cottonil-inventory.png" }
     ]
   },
-  fleet: {
+    fleet: {
     name: "Fleet Management Analysis",
     images: [
       { label: "Executive", src: "assets/fleet-Executive-Dashboard.png" },
