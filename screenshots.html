@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Screenshots | Saif Ghonem</title>
+  <meta name="description" content="Project screenshots gallery" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html#top">Saif Ghonem</a>
+
+      <nav class="nav-links">
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#certs">Certifications</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="nav-mobile" id="navMobile">
+      <a href="index.html#projects">Projects</a>
+      <a href="index.html#certs">Certifications</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="section container reveal">
+      <div class="section-head">
+        <h2 id="title">Screenshots</h2>
+        <p id="subtitle">Select a project to view its dashboard pages</p>
+      </div>
+
+      <div class="panel">
+        <div class="gallery-head">
+          <div class="gallery-project" id="projectName">Project</div>
+          <div class="gallery-controls">
+            <button class="btn" id="prevBtn" type="button">Prev</button>
+            <button class="btn" id="nextBtn" type="button">Next</button>
+            <a class="btn primary" id="openFull" href="#" target="_blank" rel="noreferrer">Open Full</a>
+          </div>
+        </div>
+
+        <div class="gallery-frame">
+          <img id="mainImg" src="" alt="Screenshot" />
+        </div>
+
+        <div class="thumbs" id="thumbs"></div>
+      </div>
+
+      <div class="note" id="hintNote"></div>
+    </section>
+
+    <footer class="footer container">
+      <div class="footer-row">
+        <div>© <span id="year"></span> Saif Mohamed Ghonem</div>
+        <div class="footer-links">
+          <a href="index.html#projects">Projects</a>
+          <a href="index.html#contact">Contact</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script src="screenshots.js"></script>
+</body>
+</html>
