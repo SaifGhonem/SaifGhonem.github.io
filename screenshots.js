@@ -25,12 +25,8 @@ const DATA = {
 const key = (getParam("p") || "cottonil").toLowerCase();
 const project = DATA[key];
 
-const yearEl = document.getElementById("year");
-if (yearEl) yearEl.textContent = String(new Date().getFullYear());
-
 const pageTitle = document.getElementById("pageTitle");
 const pageSub = document.getElementById("pageSub");
-const projectName = document.getElementById("projectName");
 const msg = document.getElementById("msg");
 
 const mainImg = document.getElementById("mainImg");
@@ -41,8 +37,22 @@ const openFull = document.getElementById("openFull");
 
 let idx = 0;
 
-function safeText(el, text) {
+function setText(el, text) {
   if (el) el.textContent = text;
+}
+
+function renderThumbs() {
+  if (!project || !thumbs) return;
+
+  thumbs.innerHTML = "";
+  project.images.forEach((img, i) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "thumb";
+    b.textContent = img.label;
+    b.addEventListener("click", () => setImage(i));
+    thumbs.appendChild(b);
+  });
 }
 
 function setImage(i) {
@@ -64,36 +74,20 @@ function setImage(i) {
   }
 }
 
-function renderThumbs() {
-  if (!project || !thumbs) return;
-
-  thumbs.innerHTML = "";
-  project.images.forEach((img, i) => {
-    const b = document.createElement("button");
-    b.type = "button";
-    b.className = "thumb";
-    b.textContent = img.label;
-    b.addEventListener("click", () => setImage(i));
-    thumbs.appendChild(b);
-  });
-}
-
 function init() {
   if (!project) {
-    safeText(pageTitle, "Screenshots");
-    safeText(projectName, "Project not found");
-    safeText(pageSub, "");
-    safeText(msg, "No screenshots added for this project yet.");
+    setText(pageTitle, "Screenshots");
+    setText(pageSub, "");
+    setText(msg, "Project not found.");
     if (prevBtn) prevBtn.style.display = "none";
     if (nextBtn) nextBtn.style.display = "none";
     if (openFull) openFull.style.display = "none";
     return;
   }
 
-  safeText(pageTitle, `${project.name} Screenshots`);
-  safeText(projectName, project.name);
-  safeText(pageSub, "Use Prev Next or click a label");
-  safeText(msg, "");
+  setText(pageTitle, `${project.name} Screenshots`);
+  setText(pageSub, "Use Prev Next or click a label");
+  setText(msg, "");
 
   renderThumbs();
   setImage(0);
@@ -103,9 +97,3 @@ init();
 
 if (prevBtn) prevBtn.addEventListener("click", () => setImage(idx - 1));
 if (nextBtn) nextBtn.addEventListener("click", () => setImage(idx + 1));
-
-window.addEventListener("keydown", (e) => {
-  if (!project) return;
-  if (e.key === "ArrowLeft") setImage(idx - 1);
-  if (e.key === "ArrowRight") setImage(idx + 1);
-});
