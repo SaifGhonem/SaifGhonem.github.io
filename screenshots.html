@@ -4,18 +4,16 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Screenshots | Saif Ghonem</title>
-  <meta name="description" content="Project screenshots gallery" />
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
   <header class="nav">
     <div class="nav-inner">
-      <a class="brand" href="index.html#top">Saif Ghonem</a>
+      <a class="brand" href="index.html#projects">Saif Ghonem</a>
 
       <nav class="nav-links">
         <a href="index.html#projects">Projects</a>
-        <a href="index.html#certs">Certifications</a>
         <a href="index.html#contact">Contact</a>
       </nav>
 
@@ -26,7 +24,6 @@
 
     <div class="nav-mobile" id="navMobile">
       <a href="index.html#projects">Projects</a>
-      <a href="index.html#certs">Certifications</a>
       <a href="index.html#contact">Contact</a>
     </div>
   </header>
@@ -34,13 +31,14 @@
   <main class="page">
     <section class="section container reveal">
       <div class="section-head">
-        <h2 id="title">Screenshots</h2>
-        <p id="subtitle">Select a project to view its dashboard pages</p>
+        <h2 id="pageTitle">Screenshots</h2>
+        <p id="pageSub">Gallery</p>
       </div>
 
       <div class="panel">
         <div class="gallery-head">
           <div class="gallery-project" id="projectName">Project</div>
+
           <div class="gallery-controls">
             <button class="btn" id="prevBtn" type="button">Prev</button>
             <button class="btn" id="nextBtn" type="button">Next</button>
@@ -53,9 +51,9 @@
         </div>
 
         <div class="thumbs" id="thumbs"></div>
-      </div>
 
-      <div class="note" id="hintNote"></div>
+        <div class="note" id="msg"></div>
+      </div>
     </section>
 
     <footer class="footer container">
@@ -69,6 +67,6 @@
     </footer>
   </main>
 
-  <script src="screenshots.js"></script>
+  <script src="screenshots.js" defer></script>
 </body>
 </html>
