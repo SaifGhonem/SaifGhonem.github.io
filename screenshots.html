@@ -8,28 +8,8 @@
 </head>
 
 <body>
-  <header class="nav">
-    <div class="nav-inner">
-      <a class="brand" href="index.html#projects">Saif Ghonem</a>
-
-      <nav class="nav-links">
-        <a href="index.html#projects">Projects</a>
-        <a href="index.html#contact">Contact</a>
-      </nav>
-
-      <button class="nav-toggle" id="navToggle" aria-label="Open menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-
-    <div class="nav-mobile" id="navMobile">
-      <a href="index.html#projects">Projects</a>
-      <a href="index.html#contact">Contact</a>
-    </div>
-  </header>
-
   <main class="page">
-    <section class="section container reveal">
+    <section class="section container">
       <div class="section-head">
         <h2 id="pageTitle">Screenshots</h2>
         <p id="pageSub">Gallery</p>
@@ -37,7 +17,7 @@
 
       <div class="panel">
         <div class="gallery-head">
-          <div class="gallery-project" id="projectName">Project</div>
+          <a class="link" href="index.html#projects">Back to Projects</a>
 
           <div class="gallery-controls">
             <button class="btn" id="prevBtn" type="button">Prev</button>
@@ -55,18 +35,8 @@
         <div class="note" id="msg"></div>
       </div>
     </section>
-
-    <footer class="footer container">
-      <div class="footer-row">
-        <div>© <span id="year"></span> Saif Mohamed Ghonem</div>
-        <div class="footer-links">
-          <a href="index.html#projects">Projects</a>
-          <a href="index.html#contact">Contact</a>
-        </div>
-      </div>
-    </footer>
   </main>
 
-  <script src="screenshots.js" defer></script>
+  <script src="screenshots.js?v=3" defer></script>
 </body>
 </html>
