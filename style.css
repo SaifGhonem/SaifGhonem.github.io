@@ -527,13 +527,15 @@ iframe{
 }
 
 .card-img{
-  width:200%;
-  height:100px;
+  width:100%;
+  height:220px;
   object-fit:cover;
   border-radius:16px;
   border:1px solid var(--line);
   margin-bottom:14px;
 }
+
+
 
 
 
