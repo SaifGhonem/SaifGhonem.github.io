@@ -528,9 +528,11 @@ iframe{
 
 .card-img{
   width:100%;
-  height:210px;
+  height:220px;
   object-fit:cover;
   border-radius:16px;
   border:1px solid var(--line);
-  margin-top:12px;
+  margin-bottom:14px;
 }
+
+
