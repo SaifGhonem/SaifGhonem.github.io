@@ -46,8 +46,8 @@ tiltEls.forEach(el => {
 })
 
 const mount = document.getElementById("bg3d")
-
 const supportsReduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+
 if (mount && !supportsReduceMotion){
   const scene = new THREE.Scene()
 
@@ -70,46 +70,57 @@ if (mount && !supportsReduceMotion){
   rim.position.set(-4, 1, -2)
   scene.add(rim)
 
-  const geo = new THREE.TorusKnotGeometry(1, 0.32, 220, 18)
-  const mat = new THREE.MeshStandardMaterial({
-    color: 0x9bb8ff,
-    metalness: 0.55,
-    roughness: 0.22,
-    emissive: 0x112244,
-    emissiveIntensity: 0.7
-  })
-  const knot = new THREE.Mesh(geo, mat)
-  knot.position.set(1.3, 0.2, -1.6)
-  scene.add(knot)
+  // ---- Particles Field (replaces knot + orb) ----
+  const count = 12000
+  const fieldPositions = new Float32Array(count * 3)
 
-  const sphereGeo = new THREE.SphereGeometry(0.55, 48, 48)
-  const sphereMat = new THREE.MeshStandardMaterial({
-    color: 0x7fffd4,
-    metalness: 0.35,
-    roughness: 0.25,
-    emissive: 0x063323,
-    emissiveIntensity: 0.75
-  })
-  const orb = new THREE.Mesh(sphereGeo, sphereMat)
-  orb.position.set(-1.7, -0.35, -2.4)
-  scene.add(orb)
+  for (let i = 0; i < count; i++){
+    const i3 = i * 3
+    fieldPositions[i3 + 0] = (Math.random() - 0.5) * 18
+    fieldPositions[i3 + 1] = (Math.random() - 0.5) * 10
+    fieldPositions[i3 + 2] = (Math.random() - 0.5) * 18
+  }
 
+  const fieldGeo = new THREE.BufferGeometry()
+  fieldGeo.setAttribute("position", new THREE.BufferAttribute(fieldPositions, 3))
+
+  const fieldMat = new THREE.PointsMaterial({
+    size: 0.02,
+    transparent: true,
+    opacity: 0.65
+  })
+
+  const field = new THREE.Points(fieldGeo, fieldMat)
+  field.position.z = -3
+  scene.add(field)
+
+  // ---- Stars (keep) ----
   const starCount = 1800
-  const positions = new Float32Array(starCount * 3)
+  const starPositions = new Float32Array(starCount * 3)
+
   for (let i = 0; i < starCount; i++){
     const i3 = i * 3
-    positions[i3 + 0] = (Math.random() - 0.5) * 22
-    positions[i3 + 1] = (Math.random() - 0.5) * 14
-    positions[i3 + 2] = -Math.random() * 40
+    starPositions[i3 + 0] = (Math.random() - 0.5) * 22
+    starPositions[i3 + 1] = (Math.random() - 0.5) * 14
+    starPositions[i3 + 2] = -Math.random() * 40
   }
 
   const starsGeo = new THREE.BufferGeometry()
-  starsGeo.setAttribute("position", new THREE.BufferAttribute(positions, 3))
-  const starsMat = new THREE.PointsMaterial({ color: 0xaac8ff, size: 0.02, transparent: true, opacity: 0.65 })
+  starsGeo.setAttribute("position", new THREE.BufferAttribute(starPositions, 3))
+
+  const starsMat = new THREE.PointsMaterial({
+    color: 0xaac8ff,
+    size: 0.02,
+    transparent: true,
+    opacity: 0.65
+  })
+
   const stars = new THREE.Points(starsGeo, starsMat)
   scene.add(stars)
 
+  // ---- Resize + Input ----
   let t = 0
+
   const onResize = () => {
     camera.aspect = window.innerWidth / window.innerHeight
     camera.updateProjectionMatrix()
@@ -128,21 +139,24 @@ if (mount && !supportsReduceMotion){
     scrollState.y = window.scrollY || 0
   }, { passive: true })
 
+  // ---- Animate ----
   const animate = () => {
     t += 0.006
 
     const scrollFactor = clamp(scrollState.y / 1200, 0, 1)
 
-    knot.rotation.x += 0.004
-    knot.rotation.y += 0.006
-    knot.position.y = 0.2 + Math.sin(t) * 0.18 - scrollFactor * 0.35
+    // particles motion
+    field.rotation.y = t * 0.10
+    field.rotation.x = t * 0.05
+    field.position.x = mouse.x * 0.35
+    field.position.y = mouse.y * 0.18
+    field.position.z = -3 - scrollFactor * 1.2
 
-    orb.rotation.y -= 0.005
-    orb.position.y = -0.35 + Math.cos(t * 1.2) * 0.16 - scrollFactor * 0.25
+    // camera subtle parallax
+    camera.position.x = mouse.x * 0.18
+    camera.position.y = 0.5 + mouse.y * 0.14
 
-    camera.position.x = mouse.x * 0.22
-    camera.position.y = 0.5 + mouse.y * 0.16
-
+    // stars
     stars.rotation.y = t * 0.06
     stars.position.z = -scrollFactor * 6
 
