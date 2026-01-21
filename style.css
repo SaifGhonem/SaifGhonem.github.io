@@ -623,16 +623,3 @@ iframe{
 
 
 
-#about{
-  position: relative;
-}
-
-#about::before{
-  content:"";
-  position:absolute;
-  inset:-20px;
-  background: rgba(7,10,16,0.35);
-  border-radius: 22px;
-  z-index: -1;
-  backdrop-filter: blur(6px);
-}
