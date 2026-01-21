@@ -66,6 +66,9 @@ const shotsView = document.getElementById("shotsView");
 const liveView = document.getElementById("liveView");
 const showShots = document.getElementById("showShots");
 const showLive = document.getElementById("showLive");
+if (showLive && (!project || !project.live)) {
+  showLive.style.display = "none";
+}
 const liveFrame = document.getElementById("liveFrame");
 const liveTitle = document.getElementById("liveTitle");
 const liveMsg = document.getElementById("liveMsg");
