@@ -39,10 +39,11 @@ const DATA = {
       { label: "Trends", src: "assets/airplane-3.png" }
     ]
   },
- HR: {
+  hr: {
     name: "HR Data Analysis",
+    live: "",
     images: [
-      { label: "Overview", src: "assets/HR-1.png" }
+      { label: "Dashboard", src: "assets/HR-1.png" }
     ]
   }
 };
