@@ -3,16 +3,18 @@ const getParam = (k) => new URLSearchParams(location.search).get(k) || "";
 const DATA = {
   cottonil: {
     name: "Cottonil Retail Analysis",
+    live: "https://app.powerbi.com/view?r=eyJrIjoiYjM4ZmE2ZWItMTgzMC00MDcwLWE5YjAtNGRlMWRhOWM5ODg3IiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9",
     images: [
       { label: "Main", src: "assets/cottonil-main.png" },
-      { label: "Sales & Discount", src: "assets/cottonil-sales & discount.png" },
+      { label: "Sales & Discount", src: "assets/cottonil-sales%20%26%20discount.png" },
       { label: "Returns", src: "assets/cottonil-returns.png" },
       { label: "Suppliers", src: "assets/cottonil-suppliers.png" },
       { label: "Inventory", src: "assets/cottonil-inventory.png" }
     ]
   },
-    fleet: {
+  fleet: {
     name: "Fleet Management Analysis",
+    live: "https://app.powerbi.com/view?r=eyJrIjoiMjZhNWJkOGQtZDA0OS00YTRmLTlmNDYtNDg3MTJkOTAxNDgxIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9",
     images: [
       { label: "Executive", src: "assets/fleet-Executive-Dashboard.png" },
       { label: "Fuel", src: "assets/fleet-Fuel-Analysis.png" },
@@ -21,6 +23,7 @@ const DATA = {
     ]
   }
 };
+
 
 const key = (getParam("p") || "cottonil").toLowerCase();
 const project = DATA[key];
@@ -95,5 +98,33 @@ function init() {
 
 init();
 
-if (prevBtn) prevBtn.addEventListener("click", () => setImage(idx - 1));
-if (nextBtn) nextBtn.addEventListener("click", () => setImage(idx + 1));
+
+
+const shotsView = document.getElementById("shotsView");
+const liveView = document.getElementById("liveView");
+const showShots = document.getElementById("showShots");
+const showLive = document.getElementById("showLive");
+const liveFrame = document.getElementById("liveFrame");
+const liveTitle = document.getElementById("liveTitle");
+const liveMsg = document.getElementById("liveMsg");
+
+function openShots(){
+  if (shotsView) shotsView.style.display = "block";
+  if (liveView) liveView.style.display = "none";
+}
+
+function openLive(){
+  if (!project || !project.live){
+    if (liveMsg) liveMsg.textContent = "No live link added for this project yet.";
+    return;
+  }
+  if (shotsView) shotsView.style.display = "none";
+  if (liveView) liveView.style.display = "block";
+  if (liveFrame) liveFrame.src = project.live;
+  if (liveTitle) liveTitle.textContent = `${project.name} Live`;
+  if (liveMsg) liveMsg.textContent = "";
+}
+
+showShots?.addEventListener("click", openShots);
+showLive?.addEventListener("click", openLive);
+
