@@ -38,6 +38,12 @@ const DATA = {
       { label: "Details", src: "assets/airplane-2.png" },
       { label: "Trends", src: "assets/airplane-3.png" }
     ]
+  },
+ HR: {
+    name: "HR Data Analysis",
+    images: [
+      { label: "Overview", src: "assets/HR-1.png" }
+    ]
   }
 };
 
