@@ -21,6 +21,23 @@ const DATA = {
       { label: "Repair", src: "assets/fleet-repair.png" },
       { label: "Vehicle Details", src: "assets/fleet-vehicle-details.png" }
     ]
+  },
+  pharma: {
+    name: "Hospitals and Pharmacies Overview",
+    live: "https://app.powerbi.com/view?r=eyJrIjoiOGMzMDNlY2UtZDNhNS00MTJkLWFiMTUtYTJkN2YwYzNkYTkxIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9",
+    images: [
+      { label: "Overview", src: "assets/pharma-1.png" }
+    ]
+  },
+
+  airline: {
+    name: "Airline Ticket Pricing Analysis",
+    live: "https://app.powerbi.com/view?r=eyJrIjoiZmUzZjJlYjctOTgzMS00MTM4LThjNDctZTY2ZTg5ZTcyNmNjIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9",
+    images: [
+      { label: "Overview", src: "assets/airplane-1.png" },
+      { label: "Details", src: "assets/airplane-2.png" },
+      { label: "Trends", src: "assets/airplane-3.png" }
+    ]
   }
 };
 
