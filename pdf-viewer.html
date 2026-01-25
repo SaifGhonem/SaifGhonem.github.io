@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Certificate Viewer | Saif Ghonem</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <main class="page">
+    <section class="section container">
+      <div class="section-head">
+        <h2 id="vTitle">Certificate</h2>
+        <p><a class="link" href="index.html#certs">Back to Certifications</a></p>
+      </div>
+
+      <div class="panel">
+        <div class="embed">
+          <iframe
+            id="pdfFrame"
+            title="PDF"
+            src=""
+            loading="lazy"
+            referrerpolicy="no-referrer"
+            style="width:100%; height:80vh; border:0; border-radius:16px;">
+          </iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const p = new URLSearchParams(location.search);
+    const file = p.get("file") || "";
+    const title = p.get("title") || "Certificate";
+
+    document.getElementById("vTitle").textContent = title;
+
+    const frame = document.getElementById("pdfFrame");
+    frame.src = file;
+  </script>
+</body>
+</html>
