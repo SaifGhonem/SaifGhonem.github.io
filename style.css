@@ -663,15 +663,28 @@ iframe{
 }
 
 
-body:has(#pdfFrame) .container{
-  max-width: 1100px;
-}
-
-
-
 
 #certGrid .card-img{
   aspect-ratio: 16 / 10;
   object-fit: contain;
   background: rgba(7,10,16,0.35);
 }
+
+
+
+.container.wide{
+  width:min(1100px, 94%);
+}
+
+
+.panel .bullets{
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+}
+
+.panel .bullets li{
+  margin-bottom: 6px;
+  line-height: 1.6;
+}
+
