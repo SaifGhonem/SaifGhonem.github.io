@@ -622,11 +622,14 @@ iframe{
 }
 
 
-.cards .card-img{
+.cert-img{
+  width:100%;
   aspect-ratio: 16 / 10;
   object-fit: contain;
-  background: rgba(7,10,16,0.35);
+  display:block;
+  background:rgba(7,10,16,0.35);
 }
+
 
 .cert-preview{
   display:block;
@@ -662,4 +665,13 @@ iframe{
 
 body:has(#pdfFrame) .container{
   max-width: 1100px;
+}
+
+
+
+
+#certGrid .card-img{
+  aspect-ratio: 16 / 10;
+  object-fit: contain;
+  background: rgba(7,10,16,0.35);
 }
