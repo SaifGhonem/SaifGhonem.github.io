@@ -2,22 +2,11 @@ const yearEl = document.getElementById("year");
 if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
 const CERTS = [
-  {
-    title: "DataCamp Certificate 1",
-    issuer: "DataCamp",
-    file: "assets/datacamp-1.png"
-  },
-  {
-    title: "DataCamp Certificate 2",
-    issuer: "DataCamp",
-    file: "assets/datacamp-2.png"
-  },
-  {
-    title: "DataCamp Certificate 3",
-    issuer: "DataCamp",
-    file: "assets/datacamp-3.png"
-  }
+  { title: "Introduction to Python", issuer: "DataCamp", pdf: "assets/Introduction_to_Python.pdf", img: "assets/datacamp-intro-python.png" },
+  { title: "Intermediate Python", issuer: "DataCamp", pdf: "assets/Intermediate_Python.pdf", img: "assets/datacamp-intermediate-python.png" },
+  { title: "Introduction to SQL", issuer: "DataCamp", pdf: "assets/introduction_to_SQL.pdf", img: "assets/datacamp-intro-sql.png" }
 ];
+
 
 const grid = document.getElementById("certGrid");
 
@@ -26,18 +15,19 @@ function card(cert) {
   el.className = "card tilt";
 
   el.innerHTML = `
-    <img class="card-img" src="${cert.file}" alt="${cert.title}">
+    <img class="card-img" src="${cert.img}" alt="${cert.title}">
     <div class="card-top">
       <div class="card-title">${cert.title}</div>
       <div class="tag">${cert.issuer}</div>
     </div>
     <div class="card-actions">
-      <a class="link" href="${cert.file}" target="_blank" rel="noreferrer">Open</a>
+      <a class="link" href="${cert.pdf}" target="_blank" rel="noreferrer">Open PDF</a>
     </div>
   `;
 
   return el;
 }
+
 
 if (grid) {
   CERTS.forEach(c => grid.appendChild(card(c)));
