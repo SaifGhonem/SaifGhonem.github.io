@@ -628,4 +628,22 @@ iframe{
   background: rgba(7,10,16,0.35);
 }
 
+.cert-preview{
+  display:block;
+  margin-top:12px;
+  border-radius:16px;
+  border:1px solid var(--line);
+  overflow:hidden;
+  background:rgba(7,10,16,0.25);
+}
+
+.cert-img{
+  width:100%;
+  aspect-ratio: 16 / 10;
+  object-fit: contain;
+  display:block;
+  background:rgba(7,10,16,0.35);
+}
+
+
 
