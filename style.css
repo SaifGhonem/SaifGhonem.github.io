@@ -646,4 +646,20 @@ iframe{
 }
 
 
+.pdf-panel{
+  padding: 10px;
+}
 
+.pdf-panel iframe{
+  height: 86vh;
+  border-radius: 14px;
+}
+
+.pdf-panel .note{
+  margin-top: 10px;
+}
+
+
+body:has(#pdfFrame) .container{
+  max-width: 1100px;
+}
