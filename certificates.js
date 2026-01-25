@@ -21,7 +21,7 @@ function card(cert) {
       <div class="tag">${cert.issuer}</div>
     </div>
     <div class="card-actions">
-      <a class="link" href="${cert.pdf}" target="_blank" rel="noreferrer">Open PDF</a>
+      <a class="link" href="pdf-viewer.html?file=${encodeURIComponent(cert.pdf)}&title=${encodeURIComponent(cert.title)}" target="_blank" rel="noreferrer">View Full</a>
     </div>
   `;
 
