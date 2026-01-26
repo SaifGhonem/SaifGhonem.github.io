@@ -7,59 +7,67 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 
-<body>
+<body class="pdf-view">
+  <div id="bg3d" aria-hidden="true"></div>
+
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html">Saif Ghonem</a>
+      <nav class="nav-links">
+        <a href="certificates.html">Back to Certificates</a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
   <main class="page">
-    <section class="section container wide">
+    <section class="section container wide reveal is-visible">
       <div class="section-head">
         <h2 id="vTitle">Certificate</h2>
         <p>
-          <a class="link" href="index.html#certs">Back to Certifications</a>
+          <a class="link" href="certificates.html">← All Certifications</a>
           <span class="dot"></span>
-          <a class="link" id="openDirect" href="#" target="_blank" rel="noreferrer">Open PDF Direct</a>
+          <a class="link primary" id="openDirect" href="#" target="_blank" rel="noreferrer">Open Full Image</a>
         </p>
       </div>
 
       <div class="panel pdf-panel">
-        <iframe
-          id="pdfFrame"
-          title="PDF"
-          src=""
-          loading="lazy"
-          referrerpolicy="no-referrer"
-          style="width:100%;height:80vh;border:0;border-radius:16px;background:rgba(7,10,16,0.25);">
-        </iframe>
-
+        <div class="gallery-frame">
+          <img id="pdfFrame" src="" alt="Certificate" class="tilt" style="width:100%; height:auto; display:block;" />
+        </div>
         <div class="note" id="status"></div>
       </div>
     </section>
   </main>
 
+  <footer class="footer container">
+    <div class="footer-row">
+      <div>© <span id="year"></span> Saif Ghonem</div>
+    </div>
+  </footer>
+
   <script>
+    // منطق بسيط لاستقبال البيانات من الرابط (URL Params)
     const p = new URLSearchParams(location.search);
-
-    const rawFile = p.get("file") || "";
-    const rawTitle = p.get("title") || "Certificate";
-
-    const file = decodeURIComponent(rawFile);
-    const title = decodeURIComponent(rawTitle);
+    const file = decodeURIComponent(p.get("file") || "");
+    const title = decodeURIComponent(p.get("title") || "Certificate");
 
     const titleEl = document.getElementById("vTitle");
     const frame = document.getElementById("pdfFrame");
-    const status = document.getElementById("status");
     const openDirect = document.getElementById("openDirect");
+    const status = document.getElementById("status");
 
-    titleEl.textContent = title;
-
-    if (!file) {
-      status.textContent = "Missing file parameter.";
-    } else {
-      openDirect.href = file;
-      status.textContent = "Loading PDF...";
+    if (file) {
+      titleEl.textContent = title;
       frame.src = file;
-      frame.addEventListener("load", () => {
-        status.textContent = "";
-      });
+      openDirect.href = file;
+    } else {
+      status.textContent = "Error: File not found.";
     }
   </script>
+  
+  <script type="module" src="app.js"></script>
 </body>
 </html>
