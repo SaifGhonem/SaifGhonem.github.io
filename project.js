@@ -5,7 +5,7 @@ const DATA = {
     name: "Cottonil Retail Analysis",
     live: "https://app.powerbi.com/view?r=eyJrIjoiYjM4ZmE2ZWItMTgzMC00MDcwLWE5YjAtNGRlMWRhOWM5ODg3IiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9",
     images: [
-      { label: "Main", src: "assets/cottonil-main.png" },
+      { label: "Main Dashboard", src: "assets/cottonil-main.png" },
       { label: "Sales & Discount", src: "assets/cottonil-sales%20%26%20discount.png" },
       { label: "Returns", src: "assets/cottonil-returns.png" },
       { label: "Suppliers", src: "assets/cottonil-suppliers.png" },
@@ -16,147 +16,97 @@ const DATA = {
     name: "Fleet Management Analysis",
     live: "https://app.powerbi.com/view?r=eyJrIjoiMjZhNWJkOGQtZDA0OS00YTRmLTlmNDYtNDg3MTJkOTAxNDgxIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9",
     images: [
-      { label: "Executive", src: "assets/fleet-Executive-Dashboard.png" },
-      { label: "Fuel", src: "assets/fleet-Fuel-Analysis.png" },
-      { label: "Repair", src: "assets/fleet-repair.png" },
-      { label: "Vehicle Details", src: "assets/fleet-vehicle-details.png" }
-    ]
-  },
-  pharma: {
-    name: "Hospitals and Pharmacies Overview",
-    live: "https://app.powerbi.com/view?r=eyJrIjoiOGMzMDNlY2UtZDNhNS00MTJkLWFiMTUtYTJkN2YwYzNkYTkxIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9",
-    images: [
-      { label: "Overview", src: "assets/pharma-1.png" }
-    ]
-  },
-
-  airline: {
-    name: "Airline Ticket Pricing Analysis",
-    live: "https://app.powerbi.com/view?r=eyJrIjoiZmUzZjJlYjctOTgzMS00MTM4LThjNDctZTY2ZTg5ZTcyNmNjIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9",
-    images: [
-      { label: "Overview", src: "assets/airplane-1.png" },
-      { label: "Details", src: "assets/airplane-2.png" },
-      { label: "Trends", src: "assets/airplane-3.png" }
-    ]
-  },
-  hr: {
-    name: "HR Data Analysis",
-    live: "",
-    images: [
-      { label: "Dashboard", src: "assets/HR-1.png" }
+      { label: "Executive View", src: "assets/fleet-Executive-Dashboard.png" },
+      { label: "Fuel Analysis", src: "assets/fleet-Fuel-Analysis.png" },
+      { label: "Repair Details", src: "assets/fleet-repair.png" },
+      { label: "Vehicle Status", src: "assets/fleet-vehicle-details.png" }
     ]
   }
 };
 
 const key = (getParam("p") || "cottonil").toLowerCase();
-const view = (getParam("view") || "shots").toLowerCase();
 const project = DATA[key];
 
+// Elements
 const pageTitle = document.getElementById("pageTitle");
 const pageSub = document.getElementById("pageSub");
-const msg = document.getElementById("msg");
-
 const mainImg = document.getElementById("mainImg");
 const thumbs = document.getElementById("thumbs");
-const prevBtn = document.getElementById("prevBtn");
-const nextBtn = document.getElementById("nextBtn");
 const openFull = document.getElementById("openFull");
-
 const shotsView = document.getElementById("shotsView");
 const liveView = document.getElementById("liveView");
 const showShots = document.getElementById("showShots");
 const showLive = document.getElementById("showLive");
-if (showLive && (!project || !project.live)) {
-  showLive.style.display = "none";
-}
 const liveFrame = document.getElementById("liveFrame");
-const liveTitle = document.getElementById("liveTitle");
-const liveMsg = document.getElementById("liveMsg");
 
 let idx = 0;
 
-function setText(el, text){ if (el) el.textContent = text; }
-
-function openShots(){
-  if (shotsView) shotsView.style.display = "block";
-  if (liveView) liveView.style.display = "none";
+function openShots() {
+  shotsView.style.display = "block";
+  liveView.style.display = "none";
+  showShots.classList.add("primary");
+  showLive.classList.remove("primary");
 }
 
-function openLive(){
-  if (!project || !project.live){
-    if (liveMsg) liveMsg.textContent = "No live link added for this project yet.";
-    return;
-  }
-  if (shotsView) shotsView.style.display = "none";
-  if (liveView) liveView.style.display = "block";
-  if (liveFrame) liveFrame.src = project.live;
-  if (liveTitle) liveTitle.textContent = `${project.name} Live Dashboard`;
-  if (liveMsg) liveMsg.textContent = "";
+function openLive() {
+  if (!project.live) return;
+  shotsView.style.display = "none";
+  liveView.style.display = "block";
+  showLive.classList.add("primary");
+  showShots.classList.remove("primary");
+  if (!liveFrame.src) liveFrame.src = project.live;
 }
 
-function renderThumbs(){
-  if (!project || !thumbs) return;
-  thumbs.innerHTML = "";
-  project.images.forEach((img, i) => {
-    const b = document.createElement("button");
-    b.type = "button";
-    b.className = "thumb";
-    b.textContent = img.label;
-    b.addEventListener("click", () => setImage(i));
-    thumbs.appendChild(b);
-  });
-}
-
-function setImage(i){
+function setImage(i) {
   if (!project) return;
   idx = (i + project.images.length) % project.images.length;
   const item = project.images[idx];
 
-  if (mainImg){
-    mainImg.src = item.src;
-    mainImg.alt = item.label;
-  }
-  if (openFull) openFull.href = item.src;
+  mainImg.src = item.src;
+  openFull.href = item.src;
 
-  if (thumbs){
-    Array.from(thumbs.children).forEach((b, j) => {
-      b.classList.toggle("is-active", j === idx);
-    });
-  }
+  // Update Thumbnails Active State
+  Array.from(thumbs.children).forEach((btn, j) => {
+    btn.classList.toggle("is-active", j === idx);
+  });
 }
 
-function init(){
-  if (!project){
-    setText(pageTitle, "Project");
-    setText(pageSub, "");
-    if (msg) msg.textContent = "Project not found.";
-    if (shotsView) shotsView.style.display = "none";
-    if (liveView) liveView.style.display = "none";
+function init() {
+  if (!project) {
+    pageTitle.textContent = "Project Not Found";
     return;
   }
 
-  setText(pageTitle, project.name);
-  setText(pageSub, "Screenshots and live dashboard");
+  pageTitle.textContent = project.name;
+  
+  // Hide Live button if no link exists
+  if (!project.live) showLive.style.display = "none";
 
-  renderThumbs();
+  // Render Thumbs
+  thumbs.innerHTML = "";
+  project.images.forEach((img, i) => {
+    const b = document.createElement("button");
+    b.className = "thumb";
+    b.textContent = img.label;
+    b.onclick = () => setImage(i);
+    thumbs.appendChild(b);
+  });
+
   setImage(0);
-
-  if (view === "live") openLive();
-  else openShots();
 }
 
-init();
+// Events
+showShots.onclick = openShots;
+showLive.onclick = openLive;
+document.getElementById("prevBtn").onclick = () => setImage(idx - 1);
+document.getElementById("nextBtn").onclick = () => setImage(idx + 1);
 
-showShots?.addEventListener("click", openShots);
-showLive?.addEventListener("click", openLive);
-
-prevBtn?.addEventListener("click", () => setImage(idx - 1));
-nextBtn?.addEventListener("click", () => setImage(idx + 1));
-
-window.addEventListener("keydown", (e) => {
-  if (!project) return;
-  if (shotsView && shotsView.style.display !== "none"){
+// Keyboard Navigation
+window.onkeydown = (e) => {
+  if (shotsView.style.display !== "none") {
     if (e.key === "ArrowLeft") setImage(idx - 1);
     if (e.key === "ArrowRight") setImage(idx + 1);
   }
-});
+};
+
+init();
