@@ -1,65 +1,65 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Certificate Viewer | Saif Ghonem</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Certificate Viewer | Saif Ghonem</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <main class="page">
-    <section class="section container wide">
-      <div class="section-head">
-        <h2 id="vTitle">Certificate</h2>
-        <p>
-          <a class="link" href="index.html#certs">Back to Certifications</a>
-          <span class="dot"></span>
-          <a class="link" id="openDirect" href="#" target="_blank" rel="noreferrer">Open PDF Direct</a>
-        </p>
-      </div>
+  <main class="page">
+    <section class="section container wide">
+      <div class="section-head">
+        <h2 id="vTitle">Certificate</h2>
+        <p>
+          <a class="link" href="index.html#certs">Back to Certifications</a>
+          <span class="dot"></span>
+          <a class="link" id="openDirect" href="#" target="_blank" rel="noreferrer">Open PDF Direct</a>
+        </p>
+      </div>
 
-      <div class="panel pdf-panel">
-        <iframe
-          id="pdfFrame"
-          title="PDF"
-          src=""
-          loading="lazy"
-          referrerpolicy="no-referrer"
-          style="width:100%;height:80vh;border:0;border-radius:16px;background:rgba(7,10,16,0.25);">
-        </iframe>
+      <div class="panel pdf-panel">
+        <iframe
+          id="pdfFrame"
+          title="PDF"
+          src=""
+          loading="lazy"
+          referrerpolicy="no-referrer"
+          style="width:100%;height:80vh;border:0;border-radius:16px;background:rgba(7,10,16,0.25);">
+        </iframe>
 
-        <div class="note" id="status"></div>
-      </div>
-    </section>
-  </main>
+        <div class="note" id="status"></div>
+      </div>
+    </section>
+  </main>
 
-  <script>
-    const p = new URLSearchParams(location.search);
+  <script>
+    const p = new URLSearchParams(location.search);
 
-    const rawFile = p.get("file") || "";
-    const rawTitle = p.get("title") || "Certificate";
+    const rawFile = p.get("file") || "";
+    const rawTitle = p.get("title") || "Certificate";
 
-    const file = decodeURIComponent(rawFile);
-    const title = decodeURIComponent(rawTitle);
+    const file = decodeURIComponent(rawFile);
+    const title = decodeURIComponent(rawTitle);
 
-    const titleEl = document.getElementById("vTitle");
-    const frame = document.getElementById("pdfFrame");
-    const status = document.getElementById("status");
-    const openDirect = document.getElementById("openDirect");
+    const titleEl = document.getElementById("vTitle");
+    const frame = document.getElementById("pdfFrame");
+    const status = document.getElementById("status");
+    const openDirect = document.getElementById("openDirect");
 
-    titleEl.textContent = title;
+    titleEl.textContent = title;
 
-    if (!file) {
-      status.textContent = "Missing file parameter.";
-    } else {
-      openDirect.href = file;
-      status.textContent = "Loading PDF...";
-      frame.src = file;
-      frame.addEventListener("load", () => {
-        status.textContent = "";
-      });
-    }
-  </script>
+    if (!file) {
+      status.textContent = "Missing file parameter.";
+    } else {
+      openDirect.href = file;
+      status.textContent = "Loading PDF...";
+      frame.src = file;
+      frame.addEventListener("load", () => {
+        status.textContent = "";
+      });
+    }
+  </script>
 </body>
 </html>
