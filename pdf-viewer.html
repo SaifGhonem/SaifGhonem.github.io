@@ -1,73 +1,65 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Certificate Viewer | Saif Ghonem</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Certificate Viewer | Saif Ghonem</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
-<body class="pdf-view">
-  <div id="bg3d" aria-hidden="true"></div>
+<body>
+  <main class="page">
+    <section class="section container wide">
+      <div class="section-head">
+        <h2 id="vTitle">Certificate</h2>
+        <p>
+          <a class="link" href="index.html#certs">Back to Certifications</a>
+          <span class="dot"></span>
+          <a class="link" id="openDirect" href="#" target="_blank" rel="noreferrer">Open PDF Direct</a>
+        </p>
+      </div>
 
-  <header class="nav">
-    <div class="nav-inner">
-      <a class="brand" href="index.html">Saif Ghonem</a>
-      <nav class="nav-links">
-        <a href="certificates.html">Back to Certificates</a>
-      </nav>
-      <button class="nav-toggle" id="navToggle" aria-label="Open menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </header>
+      <div class="panel pdf-panel">
+        <iframe
+          id="pdfFrame"
+          title="PDF"
+          src=""
+          loading="lazy"
+          referrerpolicy="no-referrer"
+          style="width:100%;height:80vh;border:0;border-radius:16px;background:rgba(7,10,16,0.25);">
+        </iframe>
 
-  <main class="page">
-    <section class="section container wide reveal is-visible">
-      <div class="section-head">
-        <h2 id="vTitle">Certificate</h2>
-        <p>
-          <a class="link" href="certificates.html">← All Certifications</a>
-          <span class="dot"></span>
-          <a class="link primary" id="openDirect" href="#" target="_blank" rel="noreferrer">Open Full Image</a>
-        </p>
-      </div>
+        <div class="note" id="status"></div>
+      </div>
+    </section>
+  </main>
 
-      <div class="panel pdf-panel">
-        <div class="gallery-frame">
-          <img id="pdfFrame" src="" alt="Certificate" class="tilt" style="width:100%; height:auto; display:block;" />
-        </div>
-        <div class="note" id="status"></div>
-      </div>
-    </section>
-  </main>
+  <script>
+    const p = new URLSearchParams(location.search);
 
-  <footer class="footer container">
-    <div class="footer-row">
-      <div>© <span id="year"></span> Saif Ghonem</div>
-    </div>
-  </footer>
+    const rawFile = p.get("file") || "";
+    const rawTitle = p.get("title") || "Certificate";
 
-  <script>
-    // منطق بسيط لاستقبال البيانات من الرابط (URL Params)
-    const p = new URLSearchParams(location.search);
-    const file = decodeURIComponent(p.get("file") || "");
-    const title = decodeURIComponent(p.get("title") || "Certificate");
+    const file = decodeURIComponent(rawFile);
+    const title = decodeURIComponent(rawTitle);
 
-    const titleEl = document.getElementById("vTitle");
-    const frame = document.getElementById("pdfFrame");
-    const openDirect = document.getElementById("openDirect");
-    const status = document.getElementById("status");
+    const titleEl = document.getElementById("vTitle");
+    const frame = document.getElementById("pdfFrame");
+    const status = document.getElementById("status");
+    const openDirect = document.getElementById("openDirect");
 
-    if (file) {
-      titleEl.textContent = title;
-      frame.src = file;
-      openDirect.href = file;
-    } else {
-      status.textContent = "Error: File not found.";
-    }
-  </script>
-  
-  <script type="module" src="app.js"></script>
+    titleEl.textContent = title;
+
+    if (!file) {
+      status.textContent = "Missing file parameter.";
+    } else {
+      openDirect.href = file;
+      status.textContent = "Loading PDF...";
+      frame.src = file;
+      frame.addEventListener("load", () => {
+        status.textContent = "";
+      });
+    }
+  </script>
 </body>
 </html>
