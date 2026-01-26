@@ -1,51 +1,51 @@
 const getParam = (k) => new URLSearchParams(location.search).get(k) || "";
 
 const DATA = {
-  cottonil: {
-    name: "Cottonil Retail Analysis",
-    live: "https://app.powerbi.com/view?r=eyJrIjoiYjM4ZmE2ZWItMTgzMC00MDcwLWE5YjAtNGRlMWRhOWM5ODg3IiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9",
-    images: [
-      { label: "Main", src: "assets/cottonil-main.png" },
-      { label: "Sales & Discount", src: "assets/cottonil-sales%20%26%20discount.png" },
-      { label: "Returns", src: "assets/cottonil-returns.png" },
-      { label: "Suppliers", src: "assets/cottonil-suppliers.png" },
-      { label: "Inventory", src: "assets/cottonil-inventory.png" }
-    ]
-  },
-  fleet: {
-    name: "Fleet Management Analysis",
-    live: "https://app.powerbi.com/view?r=eyJrIjoiMjZhNWJkOGQtZDA0OS00YTRmLTlmNDYtNDg3MTJkOTAxNDgxIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9",
-    images: [
-      { label: "Executive", src: "assets/fleet-Executive-Dashboard.png" },
-      { label: "Fuel", src: "assets/fleet-Fuel-Analysis.png" },
-      { label: "Repair", src: "assets/fleet-repair.png" },
-      { label: "Vehicle Details", src: "assets/fleet-vehicle-details.png" }
-    ]
-  },
-  pharma: {
-    name: "Hospitals and Pharmacies Overview",
-    live: "https://app.powerbi.com/view?r=eyJrIjoiOGMzMDNlY2UtZDNhNS00MTJkLWFiMTUtYTJkN2YwYzNkYTkxIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9",
-    images: [
-      { label: "Overview", src: "assets/pharma-1.png" }
-    ]
-  },
+  cottonil: {
+    name: "Cottonil Retail Analysis",
+    live: "https://app.powerbi.com/view?r=eyJrIjoiYjM4ZmE2ZWItMTgzMC00MDcwLWE5YjAtNGRlMWRhOWM5ODg3IiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9",
+    images: [
+      { label: "Main", src: "assets/cottonil-main.png" },
+      { label: "Sales & Discount", src: "assets/cottonil-sales%20%26%20discount.png" },
+      { label: "Returns", src: "assets/cottonil-returns.png" },
+      { label: "Suppliers", src: "assets/cottonil-suppliers.png" },
+      { label: "Inventory", src: "assets/cottonil-inventory.png" }
+    ]
+  },
+  fleet: {
+    name: "Fleet Management Analysis",
+    live: "https://app.powerbi.com/view?r=eyJrIjoiMjZhNWJkOGQtZDA0OS00YTRmLTlmNDYtNDg3MTJkOTAxNDgxIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9",
+    images: [
+      { label: "Executive", src: "assets/fleet-Executive-Dashboard.png" },
+      { label: "Fuel", src: "assets/fleet-Fuel-Analysis.png" },
+      { label: "Repair", src: "assets/fleet-repair.png" },
+      { label: "Vehicle Details", src: "assets/fleet-vehicle-details.png" }
+    ]
+  },
+  pharma: {
+    name: "Hospitals and Pharmacies Overview",
+    live: "https://app.powerbi.com/view?r=eyJrIjoiOGMzMDNlY2UtZDNhNS00MTJkLWFiMTUtYTJkN2YwYzNkYTkxIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9",
+    images: [
+      { label: "Overview", src: "assets/pharma-1.png" }
+    ]
+  },
 
-  airline: {
-    name: "Airline Ticket Pricing Analysis",
-    live: "https://app.powerbi.com/view?r=eyJrIjoiZmUzZjJlYjctOTgzMS00MTM4LThjNDctZTY2ZTg5ZTcyNmNjIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9",
-    images: [
-      { label: "Overview", src: "assets/airplane-1.png" },
-      { label: "Details", src: "assets/airplane-2.png" },
-      { label: "Trends", src: "assets/airplane-3.png" }
-    ]
-  },
-  hr: {
-    name: "HR Data Analysis",
-    live: "",
-    images: [
-      { label: "Dashboard", src: "assets/HR-1.png" }
-    ]
-  }
+  airline: {
+    name: "Airline Ticket Pricing Analysis",
+    live: "https://app.powerbi.com/view?r=eyJrIjoiZmUzZjJlYjctOTgzMS00MTM4LThjNDctZTY2ZTg5ZTcyNmNjIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9",
+    images: [
+      { label: "Overview", src: "assets/airplane-1.png" },
+      { label: "Details", src: "assets/airplane-2.png" },
+      { label: "Trends", src: "assets/airplane-3.png" }
+    ]
+  },
+  hr: {
+    name: "HR Data Analysis",
+    live: "",
+    images: [
+      { label: "Dashboard", src: "assets/HR-1.png" }
+    ]
+  }
 };
 
 const key = (getParam("p") || "cottonil").toLowerCase();
@@ -67,7 +67,7 @@ const liveView = document.getElementById("liveView");
 const showShots = document.getElementById("showShots");
 const showLive = document.getElementById("showLive");
 if (showLive && (!project || !project.live)) {
-  showLive.style.display = "none";
+  showLive.style.display = "none";
 }
 const liveFrame = document.getElementById("liveFrame");
 const liveTitle = document.getElementById("liveTitle");
@@ -78,71 +78,71 @@ let idx = 0;
 function setText(el, text){ if (el) el.textContent = text; }
 
 function openShots(){
-  if (shotsView) shotsView.style.display = "block";
-  if (liveView) liveView.style.display = "none";
+  if (shotsView) shotsView.style.display = "block";
+  if (liveView) liveView.style.display = "none";
 }
 
 function openLive(){
-  if (!project || !project.live){
-    if (liveMsg) liveMsg.textContent = "No live link added for this project yet.";
-    return;
-  }
-  if (shotsView) shotsView.style.display = "none";
-  if (liveView) liveView.style.display = "block";
-  if (liveFrame) liveFrame.src = project.live;
-  if (liveTitle) liveTitle.textContent = `${project.name} Live Dashboard`;
-  if (liveMsg) liveMsg.textContent = "";
+  if (!project || !project.live){
+    if (liveMsg) liveMsg.textContent = "No live link added for this project yet.";
+    return;
+  }
+  if (shotsView) shotsView.style.display = "none";
+  if (liveView) liveView.style.display = "block";
+  if (liveFrame) liveFrame.src = project.live;
+  if (liveTitle) liveTitle.textContent = `${project.name} Live Dashboard`;
+  if (liveMsg) liveMsg.textContent = "";
 }
 
 function renderThumbs(){
-  if (!project || !thumbs) return;
-  thumbs.innerHTML = "";
-  project.images.forEach((img, i) => {
-    const b = document.createElement("button");
-    b.type = "button";
-    b.className = "thumb";
-    b.textContent = img.label;
-    b.addEventListener("click", () => setImage(i));
-    thumbs.appendChild(b);
-  });
+  if (!project || !thumbs) return;
+  thumbs.innerHTML = "";
+  project.images.forEach((img, i) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "thumb";
+    b.textContent = img.label;
+    b.addEventListener("click", () => setImage(i));
+    thumbs.appendChild(b);
+  });
 }
 
 function setImage(i){
-  if (!project) return;
-  idx = (i + project.images.length) % project.images.length;
-  const item = project.images[idx];
+  if (!project) return;
+  idx = (i + project.images.length) % project.images.length;
+  const item = project.images[idx];
 
-  if (mainImg){
-    mainImg.src = item.src;
-    mainImg.alt = item.label;
-  }
-  if (openFull) openFull.href = item.src;
+  if (mainImg){
+    mainImg.src = item.src;
+    mainImg.alt = item.label;
+  }
+  if (openFull) openFull.href = item.src;
 
-  if (thumbs){
-    Array.from(thumbs.children).forEach((b, j) => {
-      b.classList.toggle("is-active", j === idx);
-    });
-  }
+  if (thumbs){
+    Array.from(thumbs.children).forEach((b, j) => {
+      b.classList.toggle("is-active", j === idx);
+    });
+  }
 }
 
 function init(){
-  if (!project){
-    setText(pageTitle, "Project");
-    setText(pageSub, "");
-    if (msg) msg.textContent = "Project not found.";
-    if (shotsView) shotsView.style.display = "none";
-    if (liveView) liveView.style.display = "none";
-    return;
-  }
+  if (!project){
+    setText(pageTitle, "Project");
+    setText(pageSub, "");
+    if (msg) msg.textContent = "Project not found.";
+    if (shotsView) shotsView.style.display = "none";
+    if (liveView) liveView.style.display = "none";
+    return;
+  }
 
-  setText(pageTitle, project.name);
-  setText(pageSub, "Screenshots and live dashboard");
+  setText(pageTitle, project.name);
+  setText(pageSub, "Screenshots and live dashboard");
 
-  renderThumbs();
-  setImage(0);
+  renderThumbs();
+  setImage(0);
 
-  if (view === "live") openLive();
-  else openShots();
+  if (view === "live") openLive();
+  else openShots();
 }
 
 init();
@@ -154,9 +154,9 @@ prevBtn?.addEventListener("click", () => setImage(idx - 1));
 nextBtn?.addEventListener("click", () => setImage(idx + 1));
 
 window.addEventListener("keydown", (e) => {
-  if (!project) return;
-  if (shotsView && shotsView.style.display !== "none"){
-    if (e.key === "ArrowLeft") setImage(idx - 1);
-    if (e.key === "ArrowRight") setImage(idx + 1);
-  }
+  if (!project) return;
+  if (shotsView && shotsView.style.display !== "none"){
+    if (e.key === "ArrowLeft") setImage(idx - 1);
+    if (e.key === "ArrowRight") setImage(idx + 1);
+  }
 });
