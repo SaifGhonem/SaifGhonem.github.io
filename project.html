@@ -1,91 +1,85 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Project Details | Saif Ghonem</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Project | Saif Ghonem</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <div id="bg3d" aria-hidden="true"></div>
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html#projects">Saif Ghonem</a>
 
-  <header class="nav">
-    <div class="nav-inner">
-      <a class="brand" href="index.html">Saif Ghonem</a>
-      <nav class="nav-links">
-        <a href="index.html#projects">Back to Projects</a>
-        <a href="index.html#contact">Contact</a>
-      </nav>
-      <button class="nav-toggle" id="navToggle" aria-label="Open menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-    <div class="nav-mobile" id="navMobile">
-      <a href="index.html#projects">Back to Projects</a>
-      <a href="index.html#contact">Contact</a>
-    </div>
-  </header>
+      <nav class="nav-links">
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
 
-  <main class="page">
-    <section class="section container reveal">
-      <div class="section-head">
-        <h2 id="pageTitle">Project Loading...</h2>
-        <p id="pageSub">Analysis screenshots and interactive dashboard</p>
-        <div style="margin-top: 15px;">
-            <a class="link" href="index.html#projects">← All Projects</a>
-        </div>
-      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
 
-      <div class="panel">
-        <div class="gallery-head">
-          <div class="gallery-controls">
-            <button class="btn primary" id="showShots" type="button">Screenshots</button>
-            <button class="btn" id="showLive" type="button">Live Dashboard</button>
-          </div>
-          
-          <div class="gallery-controls">
-            <button class="btn" id="prevBtn" type="button">Prev</button>
-            <button class="btn" id="nextBtn" type="button">Next</button>
-            <a class="btn" id="openFull" href="#" target="_blank" rel="noreferrer">Open Full Image</a>
-          </div>
-        </div>
+    <div class="nav-mobile" id="navMobile">
+      <a href="index.html#projects">Projects</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </header>
 
-        <div id="shotsView">
-          <div class="gallery-frame">
-            <img id="mainImg" src="" alt="Project Screenshot" class="tilt" />
-          </div>
-          <div class="thumbs" id="thumbs"></div>
-          <div class="note" id="msg"></div>
-        </div>
+  <main class="page">
+    <section class="section container">
+      <div class="section-head">
+        <h2 id="pageTitle">Project</h2>
+        <p id="pageSub">Screenshots and live dashboard</p>
+      </div>
 
-        <div id="liveView" style="display:none;">
-          <div class="embed">
-            <div class="embed-head">
-              <div class="embed-title" id="liveTitle">Power BI Report</div>
-              <div class="embed-sub">Interactive Dashboard</div>
-            </div>
-            <iframe
-              id="liveFrame"
-              title="Power BI"
-              src=""
-              loading="lazy"
-              allowfullscreen="true">
-            </iframe>
-          </div>
-          <div class="note" id="liveMsg"></div>
-        </div>
-      </div>
-    </section>
-  </main>
+      <div class="panel">
+        <div class="gallery-head">
+          <a class="link" href="index.html#projects">Back to Projects</a>
 
-  <footer class="footer container">
-    <div class="footer-row">
-      <div>© <span id="year"></span> Saif Ghonem</div>
-    </div>
-  </footer>
+          <div class="gallery-controls">
+            <button class="btn" id="showShots" type="button">Screenshots</button>
+            <button class="btn" id="showLive" type="button">Live Dashboard</button>
 
-  <script src="project.js" defer></script>
-  <script type="module" src="app.js"></script>
+            <button class="btn" id="prevBtn" type="button">Prev</button>
+            <button class="btn" id="nextBtn" type="button">Next</button>
+            <a class="btn primary" id="openFull" href="#" target="_blank" rel="noreferrer">Open Full</a>
+          </div>
+        </div>
+
+        <div id="shotsView">
+          <div class="gallery-frame">
+            <img id="mainImg" src="" alt="Screenshot" />
+          </div>
+          <div class="thumbs" id="thumbs"></div>
+          <div class="note" id="msg"></div>
+        </div>
+
+        <div id="liveView" style="display:none;">
+          <div class="embed">
+            <div class="embed-head">
+              <div class="embed-title" id="liveTitle">Live Dashboard</div>
+              <div class="embed-sub">Embedded from Power BI</div>
+            </div>
+
+            <iframe
+              id="liveFrame"
+              title="Power BI"
+              src=""
+              loading="lazy"
+              referrerpolicy="no-referrer"
+              allowfullscreen="true">
+            </iframe>
+          </div>
+
+          <div class="note" id="liveMsg"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="project.js?v=1" defer></script>
 </body>
 </html>
