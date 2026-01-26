@@ -1,90 +1,168 @@
-import * as THREE from 'https://cdn.skypack.dev/three@0.129.0/build/three.module.js';
+import * as THREE from "https://unpkg.com/three@0.160.0/build/three.module.js"
 
-// --- 1. الـ 3D Background Engine ---
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-const bgContainer = document.getElementById('bg3d');
+const yearEl = document.getElementById("year")
+if (yearEl) yearEl.textContent = String(new Date().getFullYear())
 
-if (bgContainer) {
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    bgContainer.appendChild(renderer.domElement);
+const navToggle = document.getElementById("navToggle")
+const navMobile = document.getElementById("navMobile")
 
-    const geometry = new THREE.BufferGeometry();
-    const count = 8000; // عدد جزيئات متوازن للأداء
-    const posArray = new Float32Array(count * 3);
-    for (let i = 0; i < count * 3; i++) {
-        posArray[i] = (Math.random() - 0.5) * 12;
-    }
-    geometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-    const material = new THREE.PointsMaterial({ size: 0.005, color: 0x78a0ff, transparent: true, opacity: 0.6 });
-    const particles = new THREE.Points(geometry, material);
-    scene.add(particles);
-    camera.position.z = 3;
+if (navToggle && navMobile){
+  navToggle.addEventListener("click", () => {
+    navMobile.classList.toggle("is-open")
+  })
 
-    function animate() {
-        requestAnimationFrame(animate);
-        particles.rotation.y += 0.001;
-        renderer.render(scene, camera);
-    }
-    animate();
-
-    window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-    });
+  navMobile.querySelectorAll("a").forEach(a => {
+    a.addEventListener("click", () => navMobile.classList.remove("is-open"))
+  })
 }
 
-// --- 2. نظام الـ Navigation (شغال في كل الصفحات) ---
-const navToggle = document.getElementById('navToggle');
-const navMobile = document.getElementById('navMobile');
+const revealEls = Array.from(document.querySelectorAll(".reveal"))
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add("is-visible")
+  })
+}, { threshold: 0.12 })
 
-if (navToggle && navMobile) {
-    navToggle.addEventListener('click', () => {
-        navMobile.classList.toggle('is-open');
-    });
-    // إغلاق المنيو عند الضغط على أي رابط
-    navMobile.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => navMobile.classList.remove('is-open'));
-    });
-}
+revealEls.forEach(el => io.observe(el))
 
-// --- 3. تأثير الـ Tilt العالمي (Event Delegation) ---
-// ده هيخلي الكروت اللي بتظهر في صفحة الشهادات والمشاريع تميل معاك تلقائياً
-const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
+const tiltEls = Array.from(document.querySelectorAll(".tilt"))
+const clamp = (n, min, max) => Math.max(min, Math.min(max, n))
 
-document.addEventListener('mousemove', (e) => {
-    const target = e.target.closest('.tilt');
-    if (!target) return;
+tiltEls.forEach(el => {
+  el.addEventListener("mousemove", (ev) => {
+    const r = el.getBoundingClientRect()
+    const x = (ev.clientX - r.left) / r.width
+    const y = (ev.clientY - r.top) / r.height
 
-    const rect = target.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width;
-    const y = (e.clientY - rect.top) / rect.height;
+    const rx = clamp((0.5 - y) * 10, -8, 8)
+    const ry = clamp((x - 0.5) * 12, -10, 10)
 
-    const rx = clamp((0.5 - y) * 10, -8, 8);
-    const ry = clamp((x - 0.5) * 12, -10, 10);
+    el.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) translateY(-2px)`
+  })
 
-    target.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) translateY(-2px)`;
-});
+  el.addEventListener("mouseleave", () => {
+    el.style.transform = "rotateX(0deg) rotateY(0deg) translateY(0)"
+  })
+})
 
-document.addEventListener('mouseout', (e) => {
-    const target = e.target.closest('.tilt');
-    if (target) {
-        target.style.transform = 'rotateX(0deg) rotateY(0deg) translateY(0)';
-    }
-});
+const mount = document.getElementById("bg3d")
+const supportsReduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
 
-// --- 4. تحديث السنة تلقائياً ---
-const yearEl = document.getElementById('year');
-if (yearEl) yearEl.textContent = new Date().getFullYear();
+if (mount && !supportsReduceMotion){
+  const scene = new THREE.Scene()
 
-// --- 5. تأثير الظهور التدريجي (Scroll Reveal) ---
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('is-visible');
-    });
-}, { threshold: 0.1 });
+  const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 200)
+  camera.position.set(0, 0.5, 5.5)
 
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+  renderer.setSize(window.innerWidth, window.innerHeight)
+  mount.appendChild(renderer.domElement)
+
+  const ambient = new THREE.AmbientLight(0xffffff, 0.55)
+  scene.add(ambient)
+
+  const key = new THREE.DirectionalLight(0xffffff, 0.9)
+  key.position.set(3, 3, 2)
+  scene.add(key)
+
+  const rim = new THREE.DirectionalLight(0x88ccff, 0.55)
+  rim.position.set(-4, 1, -2)
+  scene.add(rim)
+
+  // ---- Particles Field (replaces knot + orb) ----
+  const count = 12000
+  const fieldPositions = new Float32Array(count * 3)
+
+  for (let i = 0; i < count; i++){
+    const i3 = i * 3
+    fieldPositions[i3 + 0] = (Math.random() - 0.5) * 18
+    fieldPositions[i3 + 1] = (Math.random() - 0.5) * 10
+    fieldPositions[i3 + 2] = (Math.random() - 0.5) * 18
+  }
+
+  const fieldGeo = new THREE.BufferGeometry()
+  fieldGeo.setAttribute("position", new THREE.BufferAttribute(fieldPositions, 3))
+
+  const fieldMat = new THREE.PointsMaterial({
+    size: 0.02,
+    transparent: true,
+    opacity: 0.65
+  })
+
+  const field = new THREE.Points(fieldGeo, fieldMat)
+  field.position.z = -3
+  scene.add(field)
+
+  // ---- Stars (keep) ----
+  const starCount = 1800
+  const starPositions = new Float32Array(starCount * 3)
+
+  for (let i = 0; i < starCount; i++){
+    const i3 = i * 3
+    starPositions[i3 + 0] = (Math.random() - 0.5) * 22
+    starPositions[i3 + 1] = (Math.random() - 0.5) * 14
+    starPositions[i3 + 2] = -Math.random() * 40
+  }
+
+  const starsGeo = new THREE.BufferGeometry()
+  starsGeo.setAttribute("position", new THREE.BufferAttribute(starPositions, 3))
+
+  const starsMat = new THREE.PointsMaterial({
+    color: 0xaac8ff,
+    size: 0.02,
+    transparent: true,
+    opacity: 0.65
+  })
+
+  const stars = new THREE.Points(starsGeo, starsMat)
+  scene.add(stars)
+
+  // ---- Resize + Input ----
+  let t = 0
+
+  const onResize = () => {
+    camera.aspect = window.innerWidth / window.innerHeight
+    camera.updateProjectionMatrix()
+    renderer.setSize(window.innerWidth, window.innerHeight)
+  }
+  window.addEventListener("resize", onResize)
+
+  const mouse = { x: 0, y: 0 }
+  window.addEventListener("mousemove", (e) => {
+    mouse.x = (e.clientX / window.innerWidth) * 2 - 1
+    mouse.y = (e.clientY / window.innerHeight) * 2 - 1
+  })
+
+  const scrollState = { y: 0 }
+  window.addEventListener("scroll", () => {
+    scrollState.y = window.scrollY || 0
+  }, { passive: true })
+
+  // ---- Animate ----
+  const animate = () => {
+    t += 0.006
+
+    const scrollFactor = clamp(scrollState.y / 1200, 0, 1)
+
+    // particles motion
+    field.rotation.y = t * 0.10
+    field.rotation.x = t * 0.05
+    field.position.x = mouse.x * 0.35
+    field.position.y = mouse.y * 0.18
+    field.position.z = -3 - scrollFactor * 1.2
+
+    // camera subtle parallax
+    camera.position.x = mouse.x * 0.18
+    camera.position.y = 0.5 + mouse.y * 0.14
+
+    // stars
+    stars.rotation.y = t * 0.06
+    stars.position.z = -scrollFactor * 6
+
+    renderer.render(scene, camera)
+    requestAnimationFrame(animate)
+  }
+
+  animate()
+} 
