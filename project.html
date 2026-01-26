@@ -1,85 +1,85 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Project | Saif Ghonem</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Project | Saif Ghonem</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <header class="nav">
-    <div class="nav-inner">
-      <a class="brand" href="index.html#projects">Saif Ghonem</a>
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html#projects">Saif Ghonem</a>
 
-      <nav class="nav-links">
-        <a href="index.html#projects">Projects</a>
-        <a href="index.html#contact">Contact</a>
-      </nav>
+      <nav class="nav-links">
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
 
-      <button class="nav-toggle" id="navToggle" aria-label="Open menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
 
-    <div class="nav-mobile" id="navMobile">
-      <a href="index.html#projects">Projects</a>
-      <a href="index.html#contact">Contact</a>
-    </div>
-  </header>
+    <div class="nav-mobile" id="navMobile">
+      <a href="index.html#projects">Projects</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </header>
 
-  <main class="page">
-    <section class="section container">
-      <div class="section-head">
-        <h2 id="pageTitle">Project</h2>
-        <p id="pageSub">Screenshots and live dashboard</p>
-      </div>
+  <main class="page">
+    <section class="section container">
+      <div class="section-head">
+        <h2 id="pageTitle">Project</h2>
+        <p id="pageSub">Screenshots and live dashboard</p>
+      </div>
 
-      <div class="panel">
-        <div class="gallery-head">
-          <a class="link" href="index.html#projects">Back to Projects</a>
+      <div class="panel">
+        <div class="gallery-head">
+          <a class="link" href="index.html#projects">Back to Projects</a>
 
-          <div class="gallery-controls">
-            <button class="btn" id="showShots" type="button">Screenshots</button>
-            <button class="btn" id="showLive" type="button">Live Dashboard</button>
+          <div class="gallery-controls">
+            <button class="btn" id="showShots" type="button">Screenshots</button>
+            <button class="btn" id="showLive" type="button">Live Dashboard</button>
 
-            <button class="btn" id="prevBtn" type="button">Prev</button>
-            <button class="btn" id="nextBtn" type="button">Next</button>
-            <a class="btn primary" id="openFull" href="#" target="_blank" rel="noreferrer">Open Full</a>
-          </div>
-        </div>
+            <button class="btn" id="prevBtn" type="button">Prev</button>
+            <button class="btn" id="nextBtn" type="button">Next</button>
+            <a class="btn primary" id="openFull" href="#" target="_blank" rel="noreferrer">Open Full</a>
+          </div>
+        </div>
 
-        <div id="shotsView">
-          <div class="gallery-frame">
-            <img id="mainImg" src="" alt="Screenshot" />
-          </div>
-          <div class="thumbs" id="thumbs"></div>
-          <div class="note" id="msg"></div>
-        </div>
+        <div id="shotsView">
+          <div class="gallery-frame">
+            <img id="mainImg" src="" alt="Screenshot" />
+          </div>
+          <div class="thumbs" id="thumbs"></div>
+          <div class="note" id="msg"></div>
+        </div>
 
-        <div id="liveView" style="display:none;">
-          <div class="embed">
-            <div class="embed-head">
-              <div class="embed-title" id="liveTitle">Live Dashboard</div>
-              <div class="embed-sub">Embedded from Power BI</div>
-            </div>
+        <div id="liveView" style="display:none;">
+          <div class="embed">
+            <div class="embed-head">
+              <div class="embed-title" id="liveTitle">Live Dashboard</div>
+              <div class="embed-sub">Embedded from Power BI</div>
+            </div>
 
-            <iframe
-              id="liveFrame"
-              title="Power BI"
-              src=""
-              loading="lazy"
-              referrerpolicy="no-referrer"
-              allowfullscreen="true">
-            </iframe>
-          </div>
+            <iframe
+              id="liveFrame"
+              title="Power BI"
+              src=""
+              loading="lazy"
+              referrerpolicy="no-referrer"
+              allowfullscreen="true">
+            </iframe>
+          </div>
 
-          <div class="note" id="liveMsg"></div>
-        </div>
-      </div>
-    </section>
-  </main>
+          <div class="note" id="liveMsg"></div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-  <script src="project.js?v=1" defer></script>
+  <script src="project.js?v=1" defer></script>
 </body>
 </html>
