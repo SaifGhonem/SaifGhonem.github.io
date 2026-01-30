@@ -25,6 +25,25 @@ const io = new IntersectionObserver((entries) => {
 
 revealEls.forEach(el => io.observe(el))
 
+
+const navLinks = Array.from(document.querySelectorAll(".nav-links .nav-link"))
+const sectionIds = ["about","skills","projects","certs","contact"]
+const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean)
+
+function setActiveNav(id){
+  navLinks.forEach(a => a.classList.toggle("active", a.getAttribute("href") === `#${id}`))
+}
+
+if (sections.length){
+  const navIo = new IntersectionObserver((entries) => {
+    const visible = entries.filter(e => e.isIntersecting).sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0]
+    if (visible && visible.target && visible.target.id) setActiveNav(visible.target.id)
+  }, { threshold: [0.2, 0.35, 0.5, 0.65] })
+
+  sections.forEach(s => navIo.observe(s))
+}
+
+
 const tiltEls = Array.from(document.querySelectorAll(".tilt"))
 const clamp = (n, min, max) => Math.max(min, Math.min(max, n))
 
