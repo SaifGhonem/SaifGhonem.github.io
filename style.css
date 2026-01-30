@@ -289,6 +289,10 @@ h1{
   max-width:76ch;
 }
 
+#about .section-head{
+  margin-bottom:18px;
+}
+
 .grid{
   margin-top:18px;
   display:grid;
