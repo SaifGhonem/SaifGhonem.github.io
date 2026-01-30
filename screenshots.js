@@ -127,4 +127,3 @@ function openLive(){
 
 showShots?.addEventListener("click", openShots);
 showLive?.addEventListener("click", openLive);
-
