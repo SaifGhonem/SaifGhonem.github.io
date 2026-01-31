@@ -185,3 +185,78 @@ if (mount && !supportsReduceMotion){
 
   animate()
 }
+
+
+
+(function () {
+  const images = [
+    "assets/feedback/feedback-01.jpg",
+    "assets/feedback/feedback-02.jpg",
+    "assets/feedback/feedback-03.jpg",
+    "assets/feedback/feedback-04.jpg",
+    "assets/feedback/feedback-05.jpg",
+    "assets/feedback/feedback-06.jpg",
+    "assets/feedback/feedback-07.jpg",
+    "assets/feedback/feedback-08.jpg",
+    "assets/feedback/feedback-09.jpg",
+    "assets/feedback/feedback-10.jpg",
+    "assets/feedback/feedback-11.jpg",
+    "assets/feedback/feedback-12.jpg",
+    "assets/feedback/feedback-13.jpg"
+  ];
+
+  const imgEl = document.getElementById("fbImg");
+  const dotsEl = document.getElementById("fbDots");
+  const prevBtn = document.querySelector(".fb-prev");
+  const nextBtn = document.querySelector(".fb-next");
+
+  if (!imgEl || !dotsEl || !prevBtn || !nextBtn) return;
+
+  let i = 0;
+
+  function renderDots() {
+    dotsEl.innerHTML = "";
+    images.forEach((_, idx) => {
+      const d = document.createElement("span");
+      d.className = "fb-dot" + (idx === i ? " is-active" : "");
+      d.addEventListener("click", () => {
+        i = idx;
+        render();
+      });
+      dotsEl.appendChild(d);
+    });
+  }
+
+  function render() {
+    imgEl.src = images[i];
+    renderDots();
+  }
+
+  function next() {
+    i = (i + 1) % images.length;
+    render();
+  }
+
+  function prev() {
+    i = (i - 1 + images.length) % images.length;
+    render();
+  }
+
+  nextBtn.addEventListener("click", next);
+  prevBtn.addEventListener("click", prev);
+
+  let startX = 0;
+  imgEl.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+  }, { passive: true });
+
+  imgEl.addEventListener("touchend", (e) => {
+    const endX = e.changedTouches[0].clientX;
+    const dx = endX - startX;
+    if (Math.abs(dx) < 30) return;
+    if (dx < 0) next();
+    else prev();
+  }, { passive: true });
+
+  render();
+})();
