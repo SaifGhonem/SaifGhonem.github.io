@@ -190,29 +190,28 @@ if (mount && !supportsReduceMotion){
 
 (function () {
   const images = [
-    "assets/feedback/feedback-01.jpg",
-    "assets/feedback/feedback-02.jpg",
-    "assets/feedback/feedback-03.jpg",
-    "assets/feedback/feedback-04.jpg",
-    "assets/feedback/feedback-05.jpg",
-    "assets/feedback/feedback-06.jpg",
-    "assets/feedback/feedback-07.jpg",
-    "assets/feedback/feedback-08.jpg",
-    "assets/feedback/feedback-09.jpg",
-    "assets/feedback/feedback-10.jpg",
-    "assets/feedback/feedback-11.jpg",
-    "assets/feedback/feedback-12.jpg",
-    "assets/feedback/feedback-13.jpg"
+    "assets/feedback-01.jpg",
+    "assets/feedback-02.jpg",
+    "assets/feedback-03.jpg",
+    "assets/feedback-04.jpg",
+    "assets/feedback-05.jpg",
+    "assets/feedback-06.jpg",
+    "assets/feedback-07.jpg",
+    "assets/feedback-08.jpg",
+    "assets/feedback-09.jpg"
   ];
 
   const imgEl = document.getElementById("fbImg");
   const dotsEl = document.getElementById("fbDots");
+  const cardEl = document.getElementById("fbCard");
   const prevBtn = document.querySelector(".fb-prev");
   const nextBtn = document.querySelector(".fb-next");
 
-  if (!imgEl || !dotsEl || !prevBtn || !nextBtn) return;
+  if (!imgEl || !dotsEl || !cardEl || !prevBtn || !nextBtn) return;
 
   let i = 0;
+  let timer = null;
+  let paused = false;
 
   function renderDots() {
     dotsEl.innerHTML = "";
@@ -242,15 +241,33 @@ if (mount && !supportsReduceMotion){
     render();
   }
 
-  nextBtn.addEventListener("click", next);
+  function startAuto() {
+    stopAuto();
+    timer = setInterval(() => {
+      if (!paused) next();
+    }, 4000);
+  }
+
+  function stopAuto() {
+    if (timer) clearInterval(timer);
+    timer = null;
+  }
+
   prevBtn.addEventListener("click", prev);
+  nextBtn.addEventListener("click", next);
+
+  cardEl.addEventListener("mouseenter", () => paused = true);
+  cardEl.addEventListener("mouseleave", () => paused = false);
+
+  cardEl.addEventListener("touchstart", () => paused = true, { passive: true });
+  cardEl.addEventListener("touchend", () => paused = false, { passive: true });
 
   let startX = 0;
-  imgEl.addEventListener("touchstart", (e) => {
+  cardEl.addEventListener("touchstart", (e) => {
     startX = e.touches[0].clientX;
   }, { passive: true });
 
-  imgEl.addEventListener("touchend", (e) => {
+  cardEl.addEventListener("touchend", (e) => {
     const endX = e.changedTouches[0].clientX;
     const dx = endX - startX;
     if (Math.abs(dx) < 30) return;
@@ -259,4 +276,5 @@ if (mount && !supportsReduceMotion){
   }, { passive: true });
 
   render();
+  startAuto();
 })();
