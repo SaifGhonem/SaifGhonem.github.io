@@ -1220,6 +1220,8 @@ iframe{
   align-items:center;
   justify-content:center;
   gap:14px;
+
+  width:100%;
 }
 
 .fb-card{
@@ -1230,8 +1232,10 @@ iframe{
   box-shadow: var(--shadow);
   overflow:hidden;
 
-  width:min(720px, 88vw);
-  aspect-ratio: 1 / 1;
+  width: 520px;
+  height: 520px;
+
+  margin: 0 auto;
 }
 
 .fb-card img{
@@ -1241,6 +1245,7 @@ iframe{
   display:block;
   background: rgba(0,0,0,0.35);
 }
+
 
 .fb-dots{
   position:absolute;
@@ -1300,6 +1305,7 @@ iframe{
     border-radius:14px;
   }
 }
+
 
 
 
