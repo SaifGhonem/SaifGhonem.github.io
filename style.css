@@ -1130,7 +1130,7 @@ iframe{
   .hero-visual::before,
   .hero-grid{
     width:100%;
-    height:450px;
+    height:480px;
     border-radius:22px;
     overflow:hidden;
   }
@@ -1203,6 +1203,7 @@ iframe{
     max-width: 100%;
   }
 }
+
 
 
 
