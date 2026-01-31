@@ -290,8 +290,9 @@ h1{
 }
 
 #about .section-head{
-  margin-bottom:18px;
+  margin-bottom:28px;
 }
+
 
 .grid{
   margin-top:18px;
@@ -1105,4 +1106,71 @@ iframe{
   .about-grid{ grid-template-columns: 1fr; }
   .contact-grid{ grid-template-columns: 1fr; }
   .nav-social{ display:none; }
+}
+
+
+
+@media (max-width: 520px){
+
+  .hero{
+    grid-template-columns: 1fr;
+    gap:26px;
+    padding-top:90px;
+  }
+
+  .hero-kicker{
+    font-size:28px;
+    line-height:1.08;
+  }
+
+  .hero-title{
+    font-size:42px;
+    line-height:1.04;
+  }
+
+  .hero-visual{
+    min-height:380px;
+    justify-content:center;
+    align-items:flex-end;
+  }
+
+  .hero-visual::before,
+  .hero-grid{
+    width:100%;
+    height:360px;
+    border-radius:22px;
+  }
+
+  .hero-portrait{
+    width:min(360px, 92%);
+    transform: translateY(0);
+  }
+
+  .hero-stamp{
+    width:92px;
+    height:92px;
+    right:10px;
+    top:16px;
+    box-shadow: 0 0 0 8px rgba(122,160,255,0.10);
+  }
+
+  .stamp-ring{
+    width:66px;
+    height:66px;
+    font-size:10px;
+    letter-spacing:0.06em;
+  }
+
+  .hero-blob{
+    width:46px;
+    height:46px;
+    border-radius:14px;
+    right:26%;
+    top:70%;
+  }
+
+  .availability{
+    transform: scale(0.92);
+    transform-origin: left top;
+  }
 }
