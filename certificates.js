@@ -2,6 +2,7 @@ const yearEl = document.getElementById("year");
 if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
 const CERTS = [
+  { title: "Data Analyst Track: Excel, SQL, and Power BI", issuer: "DataCamp", pdf: "assets/Data_Analyst _Track-Excel_SQL_and _Power_BI.pdf", img: "assets/datacamp-Data_Analyst _Track-Excel_SQL_and _Power_BI.png" },
   { title: "Introduction to Python", issuer: "DataCamp", pdf: "assets/Introduction_to_Python.pdf", img: "assets/datacamp-intro-python.png" },
   { title: "Intermediate Python", issuer: "DataCamp", pdf: "assets/Intermediate_Python.pdf", img: "assets/datacamp-intermediate-python.png" },
   { title: "Introduction to SQL", issuer: "DataCamp", pdf: "assets/introduction_to_SQL.pdf", img: "assets/datacamp-intro-sql.png" }
