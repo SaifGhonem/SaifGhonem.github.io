@@ -1137,8 +1137,8 @@ iframe{
 
   /* الصورة نفسها */
   .hero-portrait{
-    width: min(300px, 82%);
-    max-width: 300px;
+    width: min(330px, 88%);
+    max-width: 330px;
     height:auto;
     display:block;
     margin:0 auto;
@@ -1203,5 +1203,6 @@ iframe{
     max-width: 100%;
   }
 }
+
 
 
