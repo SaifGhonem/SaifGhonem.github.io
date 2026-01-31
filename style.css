@@ -1139,7 +1139,7 @@ iframe{
   .hero-portrait{
     width: min(330px, 88%);
     max-width: 330px;
-    height:auto;
+    height:370px;
     display:block;
     margin:0 auto;
     transform: translateY(10px);
@@ -1203,6 +1203,7 @@ iframe{
     max-width: 100%;
   }
 }
+
 
 
 
