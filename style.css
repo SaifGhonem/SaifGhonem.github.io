@@ -1114,63 +1114,92 @@ iframe{
 
   .hero{
     grid-template-columns: 1fr;
-    gap:26px;
-    padding-top:90px;
-  }
-
-  .hero-kicker{
-    font-size:28px;
-    line-height:1.08;
-  }
-
-  .hero-title{
-    font-size:42px;
-    line-height:1.04;
+    gap:24px;
+    padding-top:88px;
   }
 
   .hero-visual{
-    min-height:380px;
+    min-height:auto;
+    display:flex;
     justify-content:center;
     align-items:flex-end;
+    padding-bottom:10px;
   }
 
+  /* الإطار اللي ورا الصورة */
   .hero-visual::before,
   .hero-grid{
     width:100%;
     height:360px;
     border-radius:22px;
+    overflow:hidden;
   }
 
+  /* الصورة نفسها */
   .hero-portrait{
-    width:min(360px, 92%);
-    transform: translateY(0);
+    width: min(320px, 86%);
+    max-width: 320px;
+    height:auto;
+    display:block;
+    margin:0 auto;
+    transform: translateY(10px);
+    border-radius: 18px;
+    overflow:hidden;
   }
 
+  /* يمنع أي حواف أو أجزاء تخرج برا الإطار */
+  .hero-visual{
+    overflow:hidden;
+    border-radius:22px;
+  }
+
+  /* البادج */
+  .availability{
+    transform: scale(0.92);
+    transform-origin: left top;
+  }
+
+  /* الدائرة */
   .hero-stamp{
-    width:92px;
-    height:92px;
-    right:10px;
-    top:16px;
+    width:86px;
+    height:86px;
+    right:12px;
+    top:18px;
     box-shadow: 0 0 0 8px rgba(122,160,255,0.10);
   }
 
   .stamp-ring{
-    width:66px;
-    height:66px;
+    width:60px;
+    height:60px;
     font-size:10px;
     letter-spacing:0.06em;
   }
 
   .hero-blob{
-    width:46px;
-    height:46px;
+    width:44px;
+    height:44px;
     border-radius:14px;
-    right:26%;
-    top:70%;
+    right:28%;
+    top:72%;
+  }
+}
+
+/* يحل مشكلة عرض سطح المكتب من الموبايل */
+@media (max-width: 900px){
+  html, body{
+    overflow-x:hidden;
   }
 
-  .availability{
-    transform: scale(0.92);
-    transform-origin: left top;
+  .container{
+    max-width: 100%;
+  }
+
+  .hero{
+    min-height:auto;
+  }
+
+  .hero-visual::before,
+  .hero-grid{
+    max-width: 100%;
   }
 }
