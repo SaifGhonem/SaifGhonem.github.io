@@ -41,6 +41,7 @@ function card(cert) {
   return el;
 }
 
+
 if (grid) {
   CERTS.forEach(c => grid.appendChild(card(c)));
 }
