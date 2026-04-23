@@ -51,7 +51,9 @@ const DATA = {
     name: "Sports Data Analysis",
     live: "https://app.powerbi.com/view?r=eyJrIjoiNmMxZGVlNzMtYmU1OS00ZGQwLWI4YTMtM2RmMTAwMWYyNWZlIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9",
     images: [
-      { label: "Dashboard", src: "assets/sport_project.png" }
+      { label: "ROM", src: "assets/sport_project.png" },
+      { label: "Strength", src: "assets/sport_project1.png" },
+      { label: "Balance", src: "assets/sport_project2.png" }
     ]
   }
 };
