@@ -2,12 +2,24 @@ const yearEl = document.getElementById("year");
 if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
 const CERTS = [
-  { title: "Data Analyst Track: Excel, SQL, and Power BI", issuer: "DataCamp", pdf: "assets/Data_Analyst _Track-Excel_SQL_and _Power_BI.pdf", img: "assets/datacamp-Data_Analyst _Track-Excel_SQL_and _Power_BI.png" },
   { title: "Introduction to Python", issuer: "DataCamp", pdf: "assets/Introduction_to_Python.pdf", img: "assets/datacamp-intro-python.png" },
   { title: "Intermediate Python", issuer: "DataCamp", pdf: "assets/Intermediate_Python.pdf", img: "assets/datacamp-intermediate-python.png" },
-  { title: "Introduction to SQL", issuer: "DataCamp", pdf: "assets/introduction_to_SQL.pdf", img: "assets/datacamp-intro-sql.png" }
+  { title: "Introduction to SQL", issuer: "DataCamp", pdf: "assets/introduction_to_SQL.pdf", img: "assets/datacamp-intro-sql.png" },
+  
+  // ======== الشهادات الجديدة ========
+  { 
+    title: "SQL Mastery for Data Analytics and Business Intelligence", 
+    issuer: "Udemy", 
+    pdf: "assets/SQL Mastery for Data Analytics and Business Intelligence.pdf", 
+    img: "assets/SQL Mastery for Data Analytics and Business Intelligence.jpg" 
+  },
+  { 
+    title: "Google Data Analytics Professional Certificate", 
+    issuer: "Coursera / Google", 
+    pdf: "assets/Google Data Analytics.pdf", 
+    img: "assets/Google_data_analytics.png" 
+  }
 ];
-
 
 const grid = document.getElementById("certGrid");
 
@@ -28,7 +40,6 @@ function card(cert) {
 
   return el;
 }
-
 
 if (grid) {
   CERTS.forEach(c => grid.appendChild(card(c)));
