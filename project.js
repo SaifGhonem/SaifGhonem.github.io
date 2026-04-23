@@ -29,7 +29,6 @@ const DATA = {
       { label: "Overview", src: "assets/pharma-1.png" }
     ]
   },
-
   airline: {
     name: "Airline Ticket Pricing Analysis",
     live: "https://app.powerbi.com/view?r=eyJrIjoiZmUzZjJlYjctOTgzMS00MTM4LThjNDctZTY2ZTg5ZTcyNmNjIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9",
@@ -44,6 +43,15 @@ const DATA = {
     live: "",
     images: [
       { label: "Dashboard", src: "assets/HR-1.png" }
+    ]
+  },
+  
+  // ======== المشروع الجديد ========
+  sports: {
+    name: "Sports Data Analysis",
+    live: "https://app.powerbi.com/view?r=eyJrIjoiNmMxZGVlNzMtYmU1OS00ZGQwLWI4YTMtM2RmMTAwMWYyNWZlIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9",
+    images: [
+      { label: "Dashboard", src: "assets/sport_project.png" }
     ]
   }
 };
@@ -66,6 +74,7 @@ const shotsView = document.getElementById("shotsView");
 const liveView = document.getElementById("liveView");
 const showShots = document.getElementById("showShots");
 const showLive = document.getElementById("showLive");
+
 if (showLive && (!project || !project.live)) {
   showLive.style.display = "none";
 }
